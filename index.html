@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toimap - Start Your Journey</title>
+    <style>
+        body { margin: 0; padding: 0; background-color: #0a0a0a; color: white; font-family: sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; text-align: center; }
+        #hero { max-width: 600px; padding: 20px; }
+        h1 { font-size: 2.5rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.2; }
+        p { color: #a0aec0; font-size: 1.1rem; margin-bottom: 2rem; }
+        #destination-input {
+            padding: 12px 18px; font-size: 1rem; border-radius: 8px; border: 1px solid #4b5563;
+            background: #1f2937; color: white; width: 80%; max-width: 400px; margin-bottom: 1.5rem;
+        }
+        #start-btn {
+            background: white; color: #111; border: none; padding: 12px 28px; font-size: 1rem;
+            border-radius: 99px; cursor: pointer; font-weight: 600; transition: background-color 0.2s, transform 0.1s;
+        }
+        #start-btn:hover { background-color: #e5e7eb; }
+        #start-btn:active { transform: scale(0.98); }
+        #footer { font-size: 0.8rem; color: #6b7280; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+    <div id="hero">
+        <h1>どこへの問いの旅に出ますか？</h1>
+        <p>行きたい国や地域、あるいは「自分」と入力して、あなたを待つ問いのルートを見つけましょう。</p>
+        <input type="text" id="destination-input" placeholder="例: Japan, Kyoto, 自分自身">
+        <button id="start-btn">問いの旅を計画する</button>
+        <div id="footer">Powered by Failio & Toimap</div>
+    </div>
+
+    <script>
+        const input = document.getElementById('destination-input');
+        const button = document.getElementById('start-btn');
+
+        function startJourney() {
+            const destination = input.value.trim() || 'any'; // 入力がなければ 'any' とする
+            // 次のページのURLにパラメータとして目的地を付与
+            window.location.href = `./toimap_app.html?destination=${encodeURIComponent(destination)}`;
+        }
+
+        if (button) {
+            button.onclick = startJourney;
+        }
+        if (input) {
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    startJourney();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
